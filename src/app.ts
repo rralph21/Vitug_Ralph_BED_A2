@@ -1,11 +1,11 @@
-import app from "./app";
+import express, { Express } from "express";
 
-const PORT = Number(process.env.PORT) || 3000;
+// Initialize Express application
+const app: Express = express();
 
-const server = app.listen(PORT, "127.0.0.1", () => {
-  console.log(`Server is running on http://127.0.0.1:${PORT}`);
+// Define a route
+app.get("/", (req, res) => {
+    res.send("Hello, World!");
 });
 
-server.on("error", (err) => {
-  console.error("Server error:", err);
-});
+export default app;
