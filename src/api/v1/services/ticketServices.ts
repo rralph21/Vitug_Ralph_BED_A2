@@ -20,9 +20,11 @@ export const getAllTicketsServices = (): {} => {
 
 };
 
-export const getTicketByIdServices = (): {} => {
+export const getTicketByIdServices = (id: number): sampleTickets | undefined => {
     
-    return {tickets: tickets, count: tickets.length};
+    let ticket = tickets.find(x => x.id == id)
+
+    return ticket;
 
 };
 
