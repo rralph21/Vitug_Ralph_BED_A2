@@ -32,15 +32,28 @@ export const getTicketByID = (req: Request, res: Response) => {
 };
 
 export const createTicket = (req: Request, res: Response) => {
-   
+
     const created = createTicketServices(req.body);
     return res.status(201).json(created);
 };
 
 export const updateTicketById = (req: Request, res: Response) => {
+    const id = Number(req.params.id);
 
-    let result = updateTicketByIdServices(1, "low")
-    res.status(200).json(result);
+    if (Number.isNaN(id)) {
+        return res.status(400).json({ error: "id must be numeric" });
+    }
+
+    const updated = updateTicketByIdServices(id, req.body);
+
+    if (!updated) {
+        return res.status(404).json({ error: `Ticket with id ${id} does not exist` });
+    }
+
+    return res.status(200).json({
+        message: "Ticket updated",
+        data: updated,
+    });
 };
 
 export const deleteTicketById = (req: Request, res: Response) => {

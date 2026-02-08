@@ -74,9 +74,44 @@ export const createTicketServices = (
 };
 
 
-export const updateTicketByIdServices = (id: number, item: string): string => {
-    // Logic to update an item in the database
-    return "Item updated";
+export const updateTicketByIdServices = (
+    id: number,
+    updates: Partial<Omit<sampleTickets, "id">>
+): { updated?: sampleTickets; error?: string } => {
+
+    const ticket = tickets.find(t => t.id === id);
+    if (!ticket) return { error: "ticket not found" };
+
+    // Validate only what exists
+    if (updates.title !== undefined && !isNonEmptyString(updates.title)) {
+        return { error: "title must be a non-empty string" };
+    }
+
+    if (updates.description !== undefined && !isNonEmptyString(updates.description)) {
+        return { error: "description must be a non-empty string" };
+    }
+
+    if (updates.priority !== undefined && !validPriorities.includes(updates.priority as any)) {
+        return { error: "priority must be: critical, high, medium, low" };
+    }
+
+    if (updates.status !== undefined && !validStatuses.includes(updates.status as any)) {
+        return { error: "status must be: open, closed" };
+    }
+
+    if (updates.createdAt !== undefined && !isValidDate(updates.createdAt)) {
+        return { error: "createdAt must be a valid date" };
+    }
+
+    // Apply updates
+    Object.assign(ticket, updates);
+
+    // Normalize createdAt if provided
+    if (updates.createdAt !== undefined) {
+        ticket.createdAt = new Date(updates.createdAt);
+    }
+
+    return { updated: ticket };
 };
 
 export const deleteTicketByIdServices = (
