@@ -10,7 +10,7 @@ export const tickets: sampleTickets[] = [
         description: "Footer still shows 2024",
         priority: "low",
         status: "open",
-        createdAt: new Date("2025-01-12T10:00:00.000Z")
+        createdAt: new Date("2026-02-11T10:00:00.000Z")
     },
 
     {
@@ -19,7 +19,7 @@ export const tickets: sampleTickets[] = [
         description: "slow Upload takes 30+ seconds",
         priority: "medium",
         status: "open",
-        createdAt: new Date('2025-01-13T10:00:00.000Z') 
+        createdAt: new Date('2026-02-13T10:00:00.000Z') 
     },
 
     {
@@ -28,7 +28,7 @@ export const tickets: sampleTickets[] = [
         description: "Dashboard takes 10+ seconds to load",
         priority: "medium",
         status: "open",
-        createdAt: new Date('2025-01-09T10:00:00.000Z') 
+        createdAt: new Date('2026-02-09T10:00:00.000Z') 
     },
 
      {
@@ -37,7 +37,7 @@ export const tickets: sampleTickets[] = [
         description: "Reset emails taking over 30 minutes",
         priority: "high",
         status: "open",
-        createdAt: new Date('2025-01-10T10:00:00.000Z') 
+        createdAt: new Date('2026-02-10T10:00:00.000Z') 
     },
 
      {
@@ -46,7 +46,7 @@ export const tickets: sampleTickets[] = [
         description: "PDF export fails silently",
         priority: "high",
         status: "open",
-        createdAt: new Date('2025-01-06T10:00:00.000Z') 
+        createdAt: new Date('2026-02-06T10:00:00.000Z') 
     },
 
      {
@@ -55,7 +55,7 @@ export const tickets: sampleTickets[] = [
         description: "Users report blank screen on login",
         priority: "critical",
         status: "open",
-        createdAt: new Date('2025-01-09T10:00:00.000Z') 
+        createdAt: new Date('2026-02-09T10:00:00.000Z') 
     },
 
      {
@@ -64,7 +64,7 @@ export const tickets: sampleTickets[] = [
         description: "Dark mode doesn't persist after reflesh",
         priority: "medium",
         status: "resolved",
-        createdAt: new Date('2025-01-05T10:00:00.000Z') 
+        createdAt: new Date('2026-02-05T10:00:00.000Z') 
     },
 ]
 
