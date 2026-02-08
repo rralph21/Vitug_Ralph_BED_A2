@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
     getAllTickets,
-    getTicketByID,
+    getTicketById,
     createTicketById,
     updateTicketById,
     deleteTicketById,
@@ -12,7 +12,7 @@ import {
 const router = Router();
 
 router.get("/tickets", getAllTickets);
-router.get("/tickets/:id", getTicketByID); // get all tickets
+router.get("/tickets/:id", getTicketById);
 router.post("/tickets", createTicketById);
 router.put("/tickets/:id", updateTicketById);
 router.delete("/tickets/:id", deleteTicketById);

@@ -14,7 +14,7 @@ export const getAllTickets = (req: Request, res: Response): void => {
     res.status(200).json(result);
 };
 
-export const getTicketByID = (req: Request, res: Response): void => {
+export const getTicketById = (req: Request, res: Response): void => {
     // Logic to get all items
     let id = Number(req.params.id)
 
@@ -23,11 +23,13 @@ export const getTicketByID = (req: Request, res: Response): void => {
         return;
     }
 
-    let result = getTicketByIdServices(id)
+    const result = getTicketByIdServices(id)
 
     if (result === undefined) {
         res.status(404).json({ error: `Ticket with ${id} does not exist` })
+        return;
     }
+
     res.status(200).json(result);
 };
 
