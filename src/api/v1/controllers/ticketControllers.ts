@@ -6,7 +6,7 @@ import {
     updateTicketByIdServices,
     deleteTicketByIdServices
 } from "../services/ticketServices";
-
+import { getTicketUrgencyByIdServices } from "../services/ticketUrgencyServices";
 
 export const getAllTickets = (req: Request, res: Response): void => {
     // Logic to get all items
@@ -45,7 +45,7 @@ export const createTicketById = (req: Request, res: Response): void => {
     });
 };
 
-export const updateTicketById = (req: Request, res: Response):void => {
+export const updateTicketById = (req: Request, res: Response): void => {
     const id = Number(req.params.id);
 
     if (Number.isNaN(id)) {
@@ -66,7 +66,7 @@ export const updateTicketById = (req: Request, res: Response):void => {
     });
 };
 
-export const deleteTicketById = (req: Request, res: Response):void => {
+export const deleteTicketById = (req: Request, res: Response): void => {
     const id = Number(req.params.id);
 
     if (Number.isNaN(id)) {
@@ -84,5 +84,26 @@ export const deleteTicketById = (req: Request, res: Response):void => {
     res.status(200).json({
         message: "Ticket deleted",
         data: deleted,
+    });
+};
+
+export const getTicketUrgencyById = (req: any, res: any): void => {
+    const id = Number(req.params.id);
+
+    if (Number.isNaN(id)) {
+        res.status(400).json({ error: "id must be numeric" });
+        return;
+    }
+
+    const result = getTicketUrgencyByIdServices(id);
+
+    if (result.error) {
+        res.status(404).json({ error: result.error });
+        return;
+    }
+
+    res.status(200).json({
+        message: "Ticket urgency calculated",
+        data: result.data,
     });
 };
