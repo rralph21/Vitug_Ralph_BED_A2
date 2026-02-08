@@ -4,8 +4,8 @@ export interface sampleTickets {
     id: number,
     title: string,
     description: string,
-    priority: string,
-    status: string,
+    priority: Priority,
+    status: Status,
     createdAt: Date
 }
 

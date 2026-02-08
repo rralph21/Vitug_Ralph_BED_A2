@@ -1,4 +1,4 @@
-import {Router} from "express";
+import { Router } from "express";
 import {
     getAllTickets,
     getTicketByID,
@@ -7,7 +7,8 @@ import {
     deleteTicketById,
 } from "../controllers/ticketControllers";
 
-const router: Router = Router();
+
+const router = Router();
 
 router.get("/tickets", getAllTickets);
 router.get("/tickets/:id", getTicketByID); // get all tickets

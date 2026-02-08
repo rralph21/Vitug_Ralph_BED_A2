@@ -31,10 +31,17 @@ export const getTicketByID = (req: Request, res: Response) => {
     res.status(200).json(result);
 };
 
-export const createTicket = (req: Request, res: Response) => {
+export const createTicketById = (req: Request, res: Response) => {
+    const result = createTicketServices(req.body);
 
-    const created = createTicketServices(req.body);
-    return res.status(201).json(created);
+    if (result.error) {
+        return res.status(400).json({ error: result.error });
+    }
+
+    return res.status(201).json({
+        message: "Ticket created",
+        data: result.created,
+    });
 };
 
 export const updateTicketById = (req: Request, res: Response) => {
@@ -47,7 +54,7 @@ export const updateTicketById = (req: Request, res: Response) => {
     const updated = updateTicketByIdServices(id, req.body);
 
     if (!updated) {
-        return res.status(404).json({ error: `Ticket with id ${id} does not exist` });
+        return res.status(404).json({ error: `Ticket with ${id} does not exist` });
     }
 
     return res.status(200).json({
