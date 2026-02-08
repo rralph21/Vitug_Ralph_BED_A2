@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { 
-    getAllTicketsServices, 
-    getTicketByIdServices, 
-    createTicketServices, 
-    updateTicketByIdServices, 
-    deleteTicketByIdServices 
+import {
+    getAllTicketsServices,
+    getTicketByIdServices,
+    createTicketServices,
+    updateTicketByIdServices,
+    deleteTicketByIdServices
 } from "../services/ticketServices";
-import {HTTP_STATUS} from "../../../constants/httpConstants"
+
 
 export const getAllTickets = (req: Request, res: Response) => {
     // Logic to get all items
@@ -18,23 +18,23 @@ export const getTicketByID = (req: Request, res: Response) => {
     // Logic to get all items
     let id = Number(req.params.id)
 
-    if(Number.isNaN(id)){
-        res.status(400).json({ error: "id must be numeric"});
+    if (Number.isNaN(id)) {
+        res.status(400).json({ error: "id must be numeric" });
         return;
     }
 
     let result = getTicketByIdServices(id)
 
-    if (result === undefined){
-        res.status(404).json({error: `Ticket with ${id} does not exist`})
+    if (result === undefined) {
+        res.status(404).json({ error: `Ticket with ${id} does not exist` })
     }
     res.status(200).json(result);
 };
 
-export const createTicketById = (req: Request, res: Response) => {
-
-    let result = createTicketServices("low")
-    res.status(200).json(result);
+export const createTicket = (req: Request, res: Response) => {
+   
+    const created = createTicketServices(req.body);
+    return res.status(201).json(created);
 };
 
 export const updateTicketById = (req: Request, res: Response) => {

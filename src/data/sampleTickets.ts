@@ -65,6 +65,8 @@ export const tickets: sampleTickets[] = [
     },
 ]
 
+export type Priority = "critical" | "high" | "medium" | "low";
+
 export const Urgency: urgency[] = [
     {
         priority: "critical",

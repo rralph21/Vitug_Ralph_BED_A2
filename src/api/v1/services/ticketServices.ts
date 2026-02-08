@@ -1,6 +1,6 @@
 import { tickets } from "../../../data/sampleTickets"
 
-export interface sampleTickets{
+export interface sampleTickets {
     id: number,
     title: string,
     description: string,
@@ -9,19 +9,19 @@ export interface sampleTickets{
     createdAt: Date
 }
 
-export interface urgency{
+export interface urgency {
     priority: string,
     baseScore: number
 }
 
 export const getAllTicketsServices = (): {} => {
-    
-    return {tickets: tickets, count: tickets.length};
+
+    return { tickets: tickets, count: tickets.length };
 
 };
 
 export const getTicketByIdServices = (id: number): sampleTickets | undefined => {
-    
+
     let ticket = tickets.find(x => x.id == id)
 
     return ticket;
@@ -38,7 +38,14 @@ export const updateTicketByIdServices = (id: number, item: string): string => {
     return "Item updated";
 };
 
-export const deleteTicketByIdServices = (id: number): string => {
-    // Logic to delete an item from the database
-    return "Item deleted";
+export const deleteTicketByIdServices = (
+    id: number
+): { deleted?: sampleTickets; error?: string } => {
+
+    // Logic to delete a ticket
+    const toDelete = tickets.findIndex(x => x.id === id);
+    if (toDelete === -1) return { error: "ticket not found" };
+
+    const [deleted] = tickets.splice(toDelete, 1);
+    return { deleted };
 };
