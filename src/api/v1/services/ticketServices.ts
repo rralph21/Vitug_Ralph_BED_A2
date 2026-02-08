@@ -14,23 +14,29 @@ export interface urgency{
     baseScore: number
 }
 
-export const getAllItems = (): {} => {
+export const getAllTicketsServices = (): {} => {
     
     return {tickets: tickets, count: tickets.length};
 
 };
 
-export const createItem = (item: string): string => {
+export const getTicketByIdServices = (): {} => {
+    
+    return {tickets: tickets, count: tickets.length};
+
+};
+
+export const createTicketServices = (item: string): string => {
     // Logic to add a new item to the database
     return "Item added";
 };
 
-export const updateItem = (id: number, item: string): string => {
+export const updateTicketByIdServices = (id: number, item: string): string => {
     // Logic to update an item in the database
     return "Item updated";
 };
 
-export const deleteItem = (id: number): string => {
+export const deleteTicketByIdServices = (id: number): string => {
     // Logic to delete an item from the database
     return "Item deleted";
 };
