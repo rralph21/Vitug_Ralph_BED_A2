@@ -1,6 +1,6 @@
-import { sampleTickets } from "../api/v1/services/ticketServices"
+import { sampleTickets, urgency } from "../api/v1/services/ticketServices"
 
-export const tickers: sampleTickets[] = [
+export const tickets: sampleTickets[] = [
     {
         id: 1,
         title: "Update footer copyright year",
@@ -65,5 +65,26 @@ export const tickers: sampleTickets[] = [
     },
 ]
 
+export const Urgency: urgency[] = [
+    {
+        priority: "critical",
+        baseScore: 50
+    },
+
+    {
+        priority: "high",
+        baseScore: 30
+    },
+
+    {
+        priority: "medium",
+        baseScore: 20
+    },
+
+    {
+        priority: "low",
+        baseScore: 10
+    }
+]
 
 
