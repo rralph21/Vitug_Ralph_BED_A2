@@ -57,7 +57,20 @@ export const updateTicketById = (req: Request, res: Response) => {
 };
 
 export const deleteTicketById = (req: Request, res: Response) => {
-    // Logic to delete an item
-    let result = deleteTicketByIdServices(1)
-    res.status(200).json(result);
+    const id = Number(req.params.id);
+
+    if (Number.isNaN(id)) {
+        return res.status(400).json({ error: "id must be numeric" });
+    }
+
+    const deleted = deleteTicketByIdServices(id);
+
+    if (!deleted) {
+        return res.status(404).json({ error: `Ticket with id ${id} does not exist` });
+    }
+
+    return res.status(200).json({
+        message: "Ticket deleted",
+        data: deleted,
+    });
 };
