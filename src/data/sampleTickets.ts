@@ -1,5 +1,8 @@
 import { sampleTickets, urgency } from "../api/v1/services/ticketServices"
 
+export type Priority = "critical" | "high" | "medium" | "low";
+export type Status = "open" | "resolved";
+
 export const tickets: sampleTickets[] = [
     {
         id: 1,
@@ -64,8 +67,6 @@ export const tickets: sampleTickets[] = [
         createdAt: new Date('2025-01-05T10:00:00.000Z') 
     },
 ]
-
-export type Priority = "critical" | "high" | "medium" | "low";
 
 export const Urgency: urgency[] = [
     {

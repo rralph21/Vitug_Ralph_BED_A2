@@ -1,4 +1,4 @@
-import { tickets, Urgency } from "../../../data/sampleTickets"
+import { tickets, Urgency, Priority, Status } from "../../../data/sampleTickets"
 
 export interface sampleTickets {
     id: number,
@@ -9,11 +9,13 @@ export interface sampleTickets {
     createdAt: Date
 }
 
-type Priority = "critical" | "high" | "medium" | "low";
-type Status = "open" | "closed";
+export interface urgency {
+    priority: Priority;
+    baseScore: number;
+}
 
 const validPriorities: Priority[] = ["critical", "high", "medium", "low"];
-const validStatuses: Status[] = ["open", "closed"];
+const validStatuses: Status[] = ["open", "resolved"];
 
 function isNonEmptyString(v: unknown): v is string {
     return typeof v === "string" && v.trim().length > 0;
@@ -25,7 +27,7 @@ function isValidDate(v: unknown): boolean {
 }
 
 
-export const getAllTicketsServices = (): {} => {
+export const getAllTicketsServices = (): { tickets: sampleTickets[]; count: number } => {
 
     return { tickets: tickets, count: tickets.length };
 
@@ -59,7 +61,7 @@ export const createTicketServices = (
     }
 
     if (!validStatuses.includes(newTicket.status as any)) {
-        return { error: "status must be: open, closed" };
+        return { error: "status must be: open, resolved" };
     }
 
     if (!isValidDate(newTicket.createdAt)) {
@@ -96,7 +98,7 @@ export const updateTicketByIdServices = (
     }
 
     if (updates.status !== undefined && !validStatuses.includes(updates.status as any)) {
-        return { error: "status must be: open, closed" };
+        return { error: "status must be: open, resolved" };
     }
 
     if (updates.createdAt !== undefined && !isValidDate(updates.createdAt)) {
