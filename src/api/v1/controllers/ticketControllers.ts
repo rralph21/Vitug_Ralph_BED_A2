@@ -6,6 +6,7 @@ import {
     updateTicketByIdServices, 
     deleteTicketByIdServices 
 } from "../services/ticketServices";
+import {HTTP_STATUS} from "../../../constants/httpConstants"
 
 export const getAllTickets = (req: Request, res: Response) => {
     // Logic to get all items
@@ -23,6 +24,10 @@ export const getTicketByID = (req: Request, res: Response) => {
     }
 
     let result = getTicketByIdServices(id)
+
+    if (result === undefined){
+        res.status(404).json({error: `Ticket with ${id} does not exist`})
+    }
     res.status(200).json(result);
 };
 
